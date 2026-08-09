@@ -1,5 +1,20 @@
 import {
+  ExternalLink,
+  Github,
+  Linkedin,
+  Mail,
+} from "lucide-react";
+
+import type {
+  LucideIcon,
+} from "lucide-react";
+
+import {
   portfolioPanels,
+} from "@/app/data/portfolio-panels";
+
+import type {
+  PortfolioPanelActionIcon,
 } from "@/app/data/portfolio-panels";
 
 import type {
@@ -7,7 +22,8 @@ import type {
 } from "./game/PortfolioWorldHud";
 
 type PortfolioInfoPanelProps = {
-  activePanel: PortfolioPanelId | null;
+  activePanel:
+    PortfolioPanelId | null;
 
   onSelectPanel: (
     panelId: PortfolioPanelId,
@@ -38,6 +54,16 @@ const panelNavigation: Array<{
   },
 ];
 
+const actionIcons: Record<
+  PortfolioPanelActionIcon,
+  LucideIcon
+> = {
+  email: Mail,
+  linkedin: Linkedin,
+  github: Github,
+  external: ExternalLink,
+};
+
 export default function PortfolioInfoPanel({
   activePanel,
   onSelectPanel,
@@ -50,18 +76,26 @@ export default function PortfolioInfoPanel({
   const content =
     portfolioPanels[activePanel];
 
+  const activePanelIndex =
+    panelNavigation.findIndex(
+      (item) =>
+        item.id === activePanel,
+    );
+
   return (
     <>
       <button
         type="button"
         className="portfolio-info-backdrop"
         onClick={onClose}
-        aria-label="Close portfolio information"
+        aria-label="Close portfolio panel"
       />
 
       <aside
         className="portfolio-info-panel"
         aria-label={`${content.title} panel`}
+        aria-modal="true"
+        role="dialog"
       >
         <div className="portfolio-info-panel__header">
           <div>
@@ -71,10 +105,7 @@ export default function PortfolioInfoPanel({
 
             <span className="portfolio-info-panel__count">
               {String(
-                panelNavigation.findIndex(
-                  (item) =>
-                    item.id === activePanel,
-                ) + 1,
+                activePanelIndex + 1,
               ).padStart(2, "0")}
             </span>
           </div>
@@ -93,32 +124,41 @@ export default function PortfolioInfoPanel({
           className="portfolio-info-panel__navigation"
           aria-label="Portfolio panel navigation"
         >
-          {panelNavigation.map((item) => {
-            const isActive =
-              activePanel === item.id;
+          {panelNavigation.map(
+            (item) => {
+              const isActive =
+                activePanel ===
+                item.id;
 
-            return (
-              <button
-                key={item.id}
-                type="button"
-                className={
-                  isActive
-                    ? "portfolio-info-panel__tab portfolio-info-panel__tab--active"
-                    : "portfolio-info-panel__tab"
-                }
-                onClick={() => {
-                  onSelectPanel(item.id);
-                }}
-                aria-pressed={isActive}
-              >
-                {item.label}
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={
+                    isActive
+                      ? "portfolio-info-panel__tab portfolio-info-panel__tab--active"
+                      : "portfolio-info-panel__tab"
+                  }
+                  onClick={() => {
+                    onSelectPanel(
+                      item.id,
+                    );
+                  }}
+                  aria-pressed={
+                    isActive
+                  }
+                >
+                  {item.label}
+                </button>
+              );
+            },
+          )}
         </nav>
 
         <div className="portfolio-info-panel__content">
-          <h2>{content.title}</h2>
+          <h2>
+            {content.title}
+          </h2>
 
           <p className="portfolio-info-panel__description">
             {content.description}
@@ -126,7 +166,10 @@ export default function PortfolioInfoPanel({
 
           <div className="portfolio-info-panel__items">
             {content.items.map(
-              (item, index) => (
+              (
+                item,
+                index,
+              ) => (
                 <article
                   key={item.title}
                   className="portfolio-info-panel__item"
@@ -134,7 +177,10 @@ export default function PortfolioInfoPanel({
                   <span className="portfolio-info-panel__item-number">
                     {String(
                       index + 1,
-                    ).padStart(2, "0")}
+                    ).padStart(
+                      2,
+                      "0",
+                    )}
                   </span>
 
                   <div>
@@ -144,10 +190,14 @@ export default function PortfolioInfoPanel({
                       </span>
                     )}
 
-                    <h3>{item.title}</h3>
+                    <h3>
+                      {item.title}
+                    </h3>
 
                     <p>
-                      {item.description}
+                      {
+                        item.description
+                      }
                     </p>
                   </div>
                 </article>
@@ -155,40 +205,74 @@ export default function PortfolioInfoPanel({
             )}
           </div>
 
-          {content.actions && (
-            <div className="portfolio-info-panel__actions">
-              {content.actions.map(
-                (action) => {
-                  const isExternal =
-                    action.href.startsWith(
-                      "http",
-                    );
+          {content.actions &&
+            content.actions.length >
+              0 && (
+              <div className="portfolio-info-panel__actions">
+                {content.actions.map(
+                  (action) => {
+                    const Icon =
+                      actionIcons[
+                        action.icon
+                      ];
 
-                  return (
-                    <a
-                      key={action.label}
-                      href={action.href}
-                      target={
-                        isExternal
-                          ? "_blank"
-                          : undefined
-                      }
-                      rel={
-                        isExternal
-                          ? "noreferrer"
-                          : undefined
-                      }
-                    >
-                      {action.label}
-                      <span aria-hidden="true">
-                        ↗
-                      </span>
-                    </a>
-                  );
-                },
-              )}
-            </div>
-          )}
+                    const isExternal =
+                      action.href.startsWith(
+                        "http",
+                      );
+
+                    return (
+                      <a
+                        key={
+                          action.label
+                        }
+                        href={
+                          action.href
+                        }
+                        target={
+                          isExternal
+                            ? "_blank"
+                            : undefined
+                        }
+                        rel={
+                          isExternal
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        aria-label={
+                          isExternal
+                            ? `${action.label} — opens in a new tab`
+                            : action.label
+                        }
+                      >
+                        <Icon
+                          className="portfolio-info-panel__action-icon"
+                          size={18}
+                          strokeWidth={
+                            2.2
+                          }
+                          aria-hidden="true"
+                        />
+
+                        <span>
+                          {
+                            action.label
+                          }
+                        </span>
+
+                        {isExternal && (
+                          <ExternalLink
+                            className="portfolio-info-panel__action-external"
+                            size={14}
+                            aria-hidden="true"
+                          />
+                        )}
+                      </a>
+                    );
+                  },
+                )}
+              </div>
+            )}
         </div>
       </aside>
     </>
