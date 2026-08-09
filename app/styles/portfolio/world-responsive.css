@@ -1,0 +1,390 @@
+/* Large desktop */
+
+@media (min-width: 1440px) {
+  .portfolio-world-hud {
+    right: 20px;
+    left: 20px;
+  }
+
+  .game-heading {
+    left: 20px;
+  }
+
+  .journey-chapter-panel {
+    right: 20px;
+  }
+}
+
+/* Tablet and smaller laptops */
+
+@media (max-width: 1024px) {
+  .portfolio-world-hud {
+    gap: 10px;
+  }
+
+  .portfolio-world-navigation a {
+    padding-inline: 8px;
+  }
+
+  .portfolio-world-status {
+    display: none;
+  }
+
+  .journey-chapter-panel {
+    width: min(
+      410px,
+      calc(100% - 24px)
+    );
+  }
+}
+
+/* Mobile and portrait tablets */
+
+@media (max-width: 767px) {
+  .portfolio-world-hud {
+    top: max(
+      8px,
+      env(safe-area-inset-top)
+    );
+
+    right: max(
+      8px,
+      env(safe-area-inset-right)
+    );
+
+    left: max(
+      8px,
+      env(safe-area-inset-left)
+    );
+
+    min-height: 56px;
+    padding: 7px 9px;
+
+    border-radius: 17px;
+  }
+
+  .portfolio-world-navigation,
+  .portfolio-world-status {
+    display: none;
+  }
+
+  .portfolio-world-brand__mark {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+
+    border-radius: 12px;
+  }
+
+  .portfolio-world-brand__text strong {
+    font-size: 0.8rem;
+  }
+
+  .portfolio-world-brand__text small {
+    font-size: 0.54rem;
+  }
+
+  .game-heading {
+    top: calc(
+      max(
+        8px,
+        env(safe-area-inset-top)
+      ) + 66px
+    );
+
+    right: 8px;
+    left: 8px;
+
+    width: auto;
+    max-width: none;
+    max-height: calc(
+      100svh - 150px
+    );
+
+    padding: 21px;
+    overflow-y: auto;
+
+    border-radius: 22px;
+
+    scrollbar-width: none;
+  }
+
+  .game-heading::-webkit-scrollbar {
+    display: none;
+  }
+
+  .game-heading h1 {
+    max-width: 330px;
+
+    font-size: clamp(
+      2.25rem,
+      11vw,
+      3.4rem
+    );
+  }
+
+  .game-heading__description {
+    font-size: 0.84rem;
+  }
+
+  .game-heading__instruction {
+    margin-top: 16px;
+    font-size: 0.6rem;
+  }
+
+  .journey-intro-badge {
+    top: calc(
+      max(
+        8px,
+        env(safe-area-inset-top)
+      ) + 66px
+    );
+
+    left: max(
+      8px,
+      env(safe-area-inset-left)
+    );
+  }
+
+  .journey-chapter-panel {
+    top: auto;
+
+    right: max(
+      8px,
+      env(safe-area-inset-right)
+    );
+
+    bottom: max(
+      8px,
+      env(safe-area-inset-bottom)
+    );
+
+    left: max(
+      8px,
+      env(safe-area-inset-left)
+    );
+
+    width: auto;
+    max-width: none;
+    max-height: min(
+      72svh,
+      620px
+    );
+
+    border-radius: 24px;
+
+    animation-name:
+      journey-panel-mobile-enter;
+  }
+
+  @keyframes journey-panel-mobile-enter {
+    from {
+      opacity: 0;
+      transform: translateY(34px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .journey-chapter-panel__visual {
+    min-height: 150px;
+  }
+
+  .journey-chapter-panel__visual img {
+    height: 170px;
+  }
+
+  .journey-chapter-panel__content {
+    padding: 17px;
+  }
+
+  .game-interface {
+    right: max(
+      8px,
+      env(safe-area-inset-right)
+    );
+
+    bottom: max(
+      8px,
+      env(safe-area-inset-bottom)
+    );
+
+    left: max(
+      8px,
+      env(safe-area-inset-left)
+    );
+
+    justify-content: center;
+
+    width: auto;
+    max-width: none;
+  }
+
+  .game-interface span {
+    flex: 1;
+    padding: 8px;
+
+    text-align: center;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 420px) {
+  .portfolio-world-brand__text strong {
+    font-size: 0.76rem;
+  }
+
+  .portfolio-world-brand__text small {
+    font-size: 0.5rem;
+  }
+
+  .game-heading {
+    padding: 18px;
+  }
+
+  .game-heading h1 {
+    font-size: clamp(
+      2rem,
+      10vw,
+      2.8rem
+    );
+  }
+
+  .game-heading__description {
+    font-size: 0.8rem;
+  }
+
+  .game-heading__instruction {
+    padding: 8px 10px;
+  }
+
+  .journey-chapter-panel__visual img {
+    height: 145px;
+  }
+
+  .journey-chapter-panel__statement {
+    font-size: 0.94rem;
+  }
+}
+
+/* Landscape phones and short screens */
+
+@media (max-height: 620px) and (orientation: landscape)  {
+  .portfolio-world-hud {
+    min-height: 48px;
+    padding-block: 5px;
+  }
+
+  .portfolio-world-brand__mark {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .game-heading {
+    top: 68px;
+
+    max-height: calc(
+      100svh - 82px
+    );
+
+    padding: 16px 20px;
+  }
+
+  .game-heading h1 {
+    font-size: clamp(
+      2rem,
+      6vw,
+      3rem
+    );
+  }
+
+  .game-heading__description {
+    margin-top: 10px;
+  }
+
+  .journey-intro-badge {
+    top: 68px;
+  }
+
+  .journey-chapter-panel {
+    top: 66px;
+    right: 8px;
+    bottom: 8px;
+    left: auto;
+
+    width: min(
+      390px,
+      48vw
+    );
+
+    max-height: none;
+  }
+
+  .journey-chapter-panel__topbar {
+    padding-block: 12px 8px;
+  }
+
+  .journey-chapter-panel__visual {
+    min-height: 100px;
+  }
+
+  .journey-chapter-panel__visual img {
+    height: 115px;
+  }
+
+  .journey-chapter-panel__content {
+    padding: 13px 17px 17px;
+  }
+
+  .journey-chapter-panel__statement {
+    margin-block: 10px 7px;
+  }
+
+  .journey-chapter-panel__return {
+    margin-top: 12px;
+  }
+}
+
+/* Very narrow landscape screens */
+
+@media (
+  max-height: 500px
+) and (
+  orientation: landscape
+) {
+  .portfolio-world-navigation {
+    display: none;
+  }
+
+  .game-heading {
+    width: min(
+      430px,
+      48vw
+    );
+  }
+
+  .game-interface {
+    right: 8px;
+    bottom: 8px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .game-heading,
+  .journey-chapter-panel,
+  .portfolio-world-status span {
+    animation: none !important;
+  }
+
+  .portfolio-world-navigation a,
+  .journey-chapter-panel__return {
+    transition: none !important;
+  }
+}

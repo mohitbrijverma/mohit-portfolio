@@ -1,0 +1,78 @@
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body:has(.game-portfolio) {
+  height: 100%;
+  overflow: hidden;
+}
+
+.game-portfolio {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
+
+  overflow: hidden;
+  overscroll-behavior: none;
+
+  background: #071827;
+}
+
+/* Phaser container */
+
+.portfolio-game {
+  position: absolute;
+  z-index: 1;
+  isolation: isolate;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+
+  overflow: hidden;
+
+  background: transparent !important;
+
+  touch-action: none;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  cursor: grab;
+}
+
+.portfolio-game:active {
+  cursor: grabbing;
+}
+
+/* Blurred responsive background */
+
+/* Phaser canvas */
+
+.portfolio-game canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  margin: 0;
+  padding: 0;
+
+  background: transparent !important;
+
+  touch-action: none;
+}

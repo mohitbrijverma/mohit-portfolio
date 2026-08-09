@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@import "./styles/portfolio/world-mobile-navigation.css";
+@import "./styles/portfolio/world-info-panel.css";
+
+@import "./styles/portfolio/world-shell.css";
+@import "./styles/portfolio/world-hud.css";
+@import "./styles/portfolio/world-overlays.css";
+@import "./styles/portfolio/world-responsive.css";
+
+/* =========================================
+   PARAGRAPH ALIGNMENT WITHOUT HYPHENATION
+========================================= */
+
+.game-portfolio p,
+.portfolio-info-panel p,
+.journey-chapter-panel p,
+main p {
+  max-width: 100%;
+
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+
+  hyphens: none;
+  -webkit-hyphens: none;
+
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.portfolio-world-hud p,
+.portfolio-mobile-navigation p,
+.game-interface p {
+  text-align: left;
+
+  hyphens: none;
+  -webkit-hyphens: none;
+}
